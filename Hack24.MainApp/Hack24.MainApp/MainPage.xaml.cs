@@ -347,8 +347,26 @@ namespace Hack24.MainApp
 
         #region Conversation App 
 
-        private async void UpdateResponses()
+        private async void UpdateResponses(bool finished = false)
         {
+            if (finished)
+            {
+                MainViewControls.Visibility = Visibility.Visible;
+                MainViewContent.Visibility = Visibility.Visible;
+                ConversationAppControls.Visibility = Visibility.Collapsed;
+                ConversationAppContent.Visibility = Visibility.Collapsed;
+                ConversationLine_0.Text = string.Empty;
+                ConversationLine_1.Text = string.Empty;
+                ConversationLine_2.Text = string.Empty;
+                ConversationLine_3.Text = string.Empty;
+                ConversationLine_4.Text = string.Empty;
+                ConversationLine_5.Text = string.Empty;
+                ConversationLine_6.Text = string.Empty;
+                ConversationLine_7.Text = string.Empty;
+                ConversationProgress = 0;
+                return;
+            }
+
             var statement = ConversationDetails.Conversations[0].Statements[ConversationProgress];
             var speechText = statement.SpeechText;
 
@@ -409,6 +427,10 @@ namespace Hack24.MainApp
             if (ConversationProgress < ConversationDetails.Conversations[0].Statements.Count)
             {
                 UpdateResponses();
+            }
+            else if (ConversationProgress == ConversationDetails.Conversations[0].Statements.Count)
+            {
+                UpdateResponses(true);
             }
         }
 
