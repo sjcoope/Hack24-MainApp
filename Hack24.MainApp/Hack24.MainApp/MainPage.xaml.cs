@@ -39,7 +39,6 @@ namespace Hack24.MainApp
 
         public MainPage()
         {
-            this.InitializeComponent();
             var faceServiceAPIKey = File.ReadAllText("./Assets/FaceServiceAPI.key");
             faceServiceClient = new FaceServiceClient(faceServiceAPIKey, "https://westeurope.api.cognitive.microsoft.com/face/v1.0");
             this.InitializeComponent();
@@ -150,6 +149,12 @@ namespace Hack24.MainApp
             PART_Canvas.Children.Add(rectangle1);
         }
 
+        private void updateScore( int delta )
+        {
+            score += delta;
+            txtScore.Text = score.ToString();
+        }
+
         private void ProcessFaces(Face[] faces)
         {
             //OutputFaceInfo(faces);
@@ -187,106 +192,71 @@ namespace Hack24.MainApp
             }
         }
 
+        private void hideEmotions()
+        {
+            PART_Choice.Visibility = Visibility.Collapsed;
+            PART_Canvas.Visibility = Visibility.Collapsed;
+            PART_Capture.Visibility = Visibility.Visible;
+        }
+
         private void Click_Happy(object sender, RoutedEventArgs e)
         {
             if (faceAttributes.Emotion.Happiness > 0.5)
             {
-                score += 1;
-            }
-            else
-            {
-                score -= 1;
+                updateScore(1);
             }
 
-            txtScore.Text = score.ToString();
-            PART_Choice.Visibility = Visibility.Collapsed;
-            PART_Canvas.Visibility = Visibility.Collapsed;
-            PART_Capture.Visibility = Visibility.Visible;
+            hideEmotions();
         }
 
         private void Click_Sad(object sender, RoutedEventArgs e)
         {
             if (faceAttributes.Emotion.Sadness > 0.5)
             {
-                score += 1;
-            }
-            else
-            {
-                score -= 1;
+                updateScore(1);
             }
 
-            txtScore.Text = score.ToString();
-            PART_Choice.Visibility = Visibility.Collapsed;
-            PART_Canvas.Visibility = Visibility.Collapsed;
-            PART_Capture.Visibility = Visibility.Visible;
+            hideEmotions();
         }
 
         private void Click_Angry(object sender, RoutedEventArgs e)
         {
             if (faceAttributes.Emotion.Anger > 0.5)
             {
-                score += 1;
-            }
-            else
-            {
-                score -= 1;
+                updateScore(1);
             }
 
-            txtScore.Text = score.ToString();
-            PART_Choice.Visibility = Visibility.Collapsed;
-            PART_Canvas.Visibility = Visibility.Collapsed;
-            PART_Capture.Visibility = Visibility.Visible;
+            hideEmotions();
         }
 
         private void Click_Fear(object sender, RoutedEventArgs e)
         {
             if (faceAttributes.Emotion.Fear > 0.5)
             {
-                score += 1;
-            }
-            else
-            {
-                score -= 1;
+                updateScore(1);
             }
 
-            txtScore.Text = score.ToString();
-            PART_Choice.Visibility = Visibility.Collapsed;
-            PART_Canvas.Visibility = Visibility.Collapsed;
-            PART_Capture.Visibility = Visibility.Visible;
+            hideEmotions();
         }
 
         private void Click_Surprised(object sender, RoutedEventArgs e)
         {
             if (faceAttributes.Emotion.Surprise > 0.5)
             {
-                score += 1;
-            }
-            else
-            {
-                score -= 1;
+                updateScore(1);
             }
 
-            txtScore.Text = score.ToString();
-            PART_Choice.Visibility = Visibility.Collapsed;
-            PART_Canvas.Visibility = Visibility.Collapsed;
-            PART_Capture.Visibility = Visibility.Visible;
+            hideEmotions();
         }
 
         private void Click_Neutral(object sender, RoutedEventArgs e)
         {
             if (faceAttributes.Emotion.Neutral > 0.5)
             {
-                score += 1;
-            }
-            else
-            {
-                score -= 1;
+                updateScore(1);
             }
 
-            txtScore.Text = score.ToString();
-            PART_Choice.Visibility = Visibility.Collapsed;
-            PART_Canvas.Visibility = Visibility.Collapsed;
-            PART_Capture.Visibility = Visibility.Visible;
+            hideEmotions();
         }
 
         private void EmotionApp_Click(object sender, RoutedEventArgs e)
