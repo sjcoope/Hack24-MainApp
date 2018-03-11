@@ -56,6 +56,8 @@ namespace Hack24.MainApp
         private async void Capture_Click(object sender, RoutedEventArgs e)
         {
             PART_Canvas.Visibility = Visibility.Collapsed;
+            btnCapture.Visibility = Visibility.Collapsed;
+
             var stream = new InMemoryRandomAccessStream();
             await PART_Capture.Source.CapturePhotoToStreamAsync(ImageEncodingProperties.CreatePng(), stream);
 
@@ -207,6 +209,7 @@ namespace Hack24.MainApp
             }
 
             hideEmotions();
+            btnCapture.Visibility = Visibility.Visible;
         }
 
         private void Click_Sad(object sender, RoutedEventArgs e)
@@ -217,6 +220,7 @@ namespace Hack24.MainApp
             }
 
             hideEmotions();
+            btnCapture.Visibility = Visibility.Visible;
         }
 
         private void Click_Angry(object sender, RoutedEventArgs e)
@@ -227,6 +231,7 @@ namespace Hack24.MainApp
             }
 
             hideEmotions();
+            btnCapture.Visibility = Visibility.Visible;
         }
 
         private void Click_Fear(object sender, RoutedEventArgs e)
@@ -237,6 +242,7 @@ namespace Hack24.MainApp
             }
 
             hideEmotions();
+            btnCapture.Visibility = Visibility.Visible;
         }
 
         private void Click_Surprised(object sender, RoutedEventArgs e)
@@ -247,6 +253,7 @@ namespace Hack24.MainApp
             }
 
             hideEmotions();
+            btnCapture.Visibility = Visibility.Visible;
         }
 
         private void Click_Neutral(object sender, RoutedEventArgs e)
@@ -257,6 +264,7 @@ namespace Hack24.MainApp
             }
 
             hideEmotions();
+            btnCapture.Visibility = Visibility.Visible;
         }
 
         private void EmotionApp_Click(object sender, RoutedEventArgs e)
