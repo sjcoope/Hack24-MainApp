@@ -94,6 +94,10 @@ namespace Hack24.MainApp
                 PART_Canvas.Visibility = Visibility.Visible;
                 PART_Choice.Visibility = Visibility.Visible;
                 PART_Capture.Visibility = Visibility.Collapsed;
+
+                faceAttributes = faces[0].FaceAttributes;
+                faceRectangle = faces[0].FaceRectangle;
+
                 ProcessFaces(faces);
             }
         }
