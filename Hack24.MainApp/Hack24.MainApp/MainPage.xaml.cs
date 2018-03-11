@@ -55,7 +55,7 @@ namespace Hack24.MainApp
 
         private async void Capture_Click(object sender, RoutedEventArgs e)
         {
-            PART_Canvas.Visibility = Visibility.Collapsed;
+//            PART_Canvas.Visibility = Visibility.Collapsed;
             btnCapture.Visibility = Visibility.Collapsed;
 
             var stream = new InMemoryRandomAccessStream();
@@ -77,13 +77,17 @@ namespace Hack24.MainApp
             var scaleX = canvasWidth / image.PixelWidth;
             var scaleY = canvasHeight / image.PixelHeight;
 
+            var marginX = 0.0;
+            var marginY = 0.0;
             if ( scaleX > scaleY )
             {
                 scaleX = scaleY ;
+                marginX = (canvasWidth - (width * scaleX))/2;
             }
             else
             {
                 scaleY = scaleX ;
+                marginY = (canvasHeight - (height * scaleY))/2;
             }
 
             stream.Seek(0);
@@ -99,19 +103,32 @@ namespace Hack24.MainApp
 
             PART_Canvas.Children.Clear();
             var tmpImage = new Image { Source = source };
+            Thickness margin = tmpImage.Margin;
+            margin.Left = marginX ;
+            margin.Right = marginX;
+            margin.Top = marginY;
+            margin.Bottom = marginY;
+            tmpImage.Margin = margin;
+
             PART_Canvas.Children.Add(tmpImage);
+
             var faces = await UploadAndDetectFaces(stream.AsStream());
 
             if (faces.Length > 0)
             {
                 PART_Canvas.Visibility = Visibility.Visible;
                 PART_Choice.Visibility = Visibility.Visible;
+                btnCapture.Visibility = Visibility.Collapsed;
                 PART_Capture.Visibility = Visibility.Collapsed;
 
                 faceAttributes = faces[0].FaceAttributes;
                 faceRectangle = faces[0].FaceRectangle;
 
-                HighlightFaces(faces, scaleX, scaleY );
+                HighlightFaces(faces, scaleX, scaleY, marginX, marginY );
+            }
+            else
+            {
+                btnCapture.Visibility = Visibility.Visible;
             }
         }
 
@@ -129,10 +146,10 @@ namespace Hack24.MainApp
             //                 $"Surprise {face.FaceAttributes.Emotion.Surprise}\nNeutral {face.FaceAttributes.Emotion.Neutral}\n\n";
         }
 
-        private void HighlightFaces(Face[] faces, double scaleX, double scaleY)
+        private void HighlightFaces(Face[] faces, double scaleX, double scaleY, double marginX, double marginY )
         {
-            var left = faces[0].FaceRectangle.Left*scaleX;
-            var top = faces[0].FaceRectangle.Top*scaleY;
+            var left = faces[0].FaceRectangle.Left*scaleX+marginX;
+            var top = faces[0].FaceRectangle.Top*scaleY+marginY;
             var width = faces[0].FaceRectangle.Width*scaleX;
             var height = faces[0].FaceRectangle.Height*scaleY;
             var rectangle1 = new Rectangle();
