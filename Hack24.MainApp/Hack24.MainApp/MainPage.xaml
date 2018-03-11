@@ -48,6 +48,16 @@
         <!-- Emotion App -->
         <StackPanel x:Name="EmotionAppControls" Grid.Column="1" Grid.Row="1" Background="Yellow" Visibility="Collapsed">
             <Button Content="Capture"  Width="200" Height="40" HorizontalAlignment="Center" Click="Capture_Click" />
+            <Canvas x:Name="PART_Choice" Visibility="Collapsed">
+                <StackPanel Visibility="Visible" HorizontalAlignment="Left" Height="369" VerticalAlignment="Top" Width="262">
+                    <Button Content="Happy"  Background="AntiqueWhite" Margin="10,10,10,10" Width="200" Height="40" HorizontalAlignment="Center" Click="Click_Happy"/>
+                    <Button Content="Sad" Background="AntiqueWhite" Margin="10,10,10,10" Width="200" Height="40" HorizontalAlignment="Center" Click="Click_Sad"/>
+                    <Button Content="Angry" Background="AntiqueWhite" Margin="10,10,10,10" Width="200" Height="40" HorizontalAlignment="Center" Click="Click_Angry"/>
+                    <Button Content="Surprised" Background="AntiqueWhite" Margin="10,10,10,10" Width="200" Height="40" HorizontalAlignment="Center" Click="Click_Surprised"/>
+                    <Button Content="Fear" Background="AntiqueWhite" Margin="10,10,10,10" Width="200" Height="40" HorizontalAlignment="Center" Click="Click_Fear"/>
+                    <Button Content="Neutral" Background="AntiqueWhite" Margin="10,10,10,10" Width="200" Height="40" HorizontalAlignment="Center" Click="Click_Neutral"/>
+                </StackPanel>
+            </Canvas>
         </StackPanel>
 
         <StackPanel x:Name="EmotionAppContent" Visibility="Collapsed" Grid.Column="0" Grid.RowSpan="2" Background="Yellow">
