@@ -318,6 +318,15 @@ namespace Hack24.MainApp
             }
         }
 
+        private void EmotionExit_Click(object sender, RoutedEventArgs e)
+        {
+            // Update UI
+            MainViewControls.Visibility = Visibility.Visible;
+            MainViewContent.Visibility = Visibility.Visible;
+            EmotionAppControls.Visibility = Visibility.Collapsed;
+            EmotionAppContent.Visibility = Visibility.Collapsed;
+        }
+
         private async void ConversationApp_Click(object sender, RoutedEventArgs e)
         {
             Task<bool> talkTask = Cortana.Talk("Conversation, let's play");
