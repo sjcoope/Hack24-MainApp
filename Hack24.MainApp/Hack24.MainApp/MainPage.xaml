@@ -29,7 +29,7 @@
             </Grid.ColumnDefinitions>
             
             <Border Background="DarkSlateGray" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="2 2 2 2">
-                <TextBlock Text="APP NAME" Foreground="White" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"></TextBlock>
+                <TextBlock Text="Social Games" Foreground="White" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"></TextBlock>
             </Border>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="SCORE" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center" ></TextBlock>
             <TextBlock x:Name="txtScore" Grid.Column="1" Grid.Row="1" Text="0" FontSize="30" HorizontalAlignment="Center" Margin="0 0 0 10"  />
@@ -37,8 +37,8 @@
 
         <!-- Main View Controls -->
         <StackPanel x:Name="MainViewControls" Grid.Column="1" Grid.Row="1" Visibility="Visible">
-            <Button Content="Play EmotivePlay" Click="EmotionApp_Click" Width="150" Height="50" Margin="25 50 25 0" />
-            <Button Content="Play TalkyWayz" Click="ConversationApp_Click" Width="150" Height="50" Margin="25 50 25 0" />
+            <Button Content="Emotion Game" Click="EmotionApp_Click" Width="150" Height="50" Margin="25 50 25 0" />
+            <Button Content="Communication Game" Click="ConversationApp_Click" Width="150" Height="50" Margin="25 50 25 0" />
         </StackPanel>
         
         <!-- Main View Content -->
