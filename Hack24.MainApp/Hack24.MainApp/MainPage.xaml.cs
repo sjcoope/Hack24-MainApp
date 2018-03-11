@@ -32,6 +32,9 @@ namespace Hack24.MainApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private FaceAttributes faceAttributes;
+        private FaceRectangle faceRectangle;
+        private int score = 0;
         private readonly IFaceServiceClient faceServiceClient;
 
         public MainPage()
@@ -68,8 +71,8 @@ namespace Hack24.MainApp
 
             var width = image.PixelWidth;
             var height = image.PixelHeight;
-            var scaleX = 0; //PART_Canvas.ActualWidth / image.PixelWidth;
-            var scaleY = 0; //PART_Canvas.ActualHeight / image.PixelHeight;
+            var scaleX = 0; // PART_Canvas.ActualWidth / image.PixelWidth;
+            var scaleY = 0; // PART_Canvas.ActualHeight / image.PixelHeight;
             stream.Seek(0);
 
             image = await decoder.GetSoftwareBitmapAsync(
@@ -80,15 +83,18 @@ namespace Hack24.MainApp
                 ColorManagementMode.DoNotColorManage);
 
             await source.SetBitmapAsync(image);
-            PART_Capture.Visibility = Visibility.Collapsed;
-            PART_Canvas.Visibility = Visibility.Visible;
 
             PART_Canvas.Children.Clear();
             var tmpImage = new Image { Source = source };
             PART_Canvas.Children.Add(tmpImage);
             var faces = await UploadAndDetectFaces(stream.AsStream());
-            ProcessFaces(faces);
 
+            if (faces.Length > 0)
+            {
+                PART_Canvas.Visibility = Visibility.Visible;
+                PART_Capture.Visibility = Visibility.Collapsed;
+                ProcessFaces(faces);
+            }
         }
 
         private void OutputFaceInfo(Face[] faces)
@@ -107,8 +113,6 @@ namespace Hack24.MainApp
 
         private void HighlightFaces(Face[] faces)
         {
-
-
             var left = faces[0].FaceRectangle.Left;
             var top = faces[0].FaceRectangle.Top;
             var width = faces[0].FaceRectangle.Width;
@@ -165,6 +169,103 @@ namespace Hack24.MainApp
                 return new Face[0];
             }
         }
+
+        private void Click_Happy(object sender, RoutedEventArgs e)
+        {
+            if (faceAttributes.Emotion.Happiness > 0.5)
+            {
+                score += 1;
+            }
+            else
+            {
+                score -= 1;
+            }
+
+            txtScore.Text = score.ToString();
+            PART_Choice.Visibility = Visibility.Collapsed;
+            PART_Canvas.Visibility = Visibility.Collapsed;
+        }
+
+        private void Click_Sad(object sender, RoutedEventArgs e)
+        {
+            if (faceAttributes.Emotion.Sadness > 0.5)
+            {
+                score += 1;
+            }
+            else
+            {
+                score -= 1;
+            }
+
+            txtScore.Text = score.ToString();
+            PART_Choice.Visibility = Visibility.Collapsed;
+            PART_Canvas.Visibility = Visibility.Collapsed;
+        }
+
+        private void Click_Angry(object sender, RoutedEventArgs e)
+        {
+            if (faceAttributes.Emotion.Anger > 0.5)
+            {
+                score += 1;
+            }
+            else
+            {
+                score -= 1;
+            }
+
+            txtScore.Text = score.ToString();
+            PART_Choice.Visibility = Visibility.Collapsed;
+            PART_Canvas.Visibility = Visibility.Collapsed;
+        }
+
+        private void Click_Fear(object sender, RoutedEventArgs e)
+        {
+            if (faceAttributes.Emotion.Fear > 0.5)
+            {
+                score += 1;
+            }
+            else
+            {
+                score -= 1;
+            }
+
+            txtScore.Text = score.ToString();
+            PART_Choice.Visibility = Visibility.Collapsed;
+            PART_Canvas.Visibility = Visibility.Collapsed;
+        }
+
+        private void Click_Surprised(object sender, RoutedEventArgs e)
+        {
+            if (faceAttributes.Emotion.Surprise > 0.5)
+            {
+                score += 1;
+            }
+            else
+            {
+                score -= 1;
+            }
+
+            txtScore.Text = score.ToString();
+            PART_Choice.Visibility = Visibility.Collapsed;
+            PART_Canvas.Visibility = Visibility.Collapsed;
+        }
+
+        private void Click_Neutral(object sender, RoutedEventArgs e)
+        {
+            if (faceAttributes.Emotion.Neutral > 0.5)
+            {
+                score += 1;
+            }
+            else
+            {
+                score -= 1;
+            }
+
+            txtScore.Text = score.ToString();
+            PART_Choice.Visibility = Visibility.Collapsed;
+            PART_Canvas.Visibility = Visibility.Collapsed;
+        }
+
         private void EmotionApp_Click(object sender, RoutedEventArgs e)
         {
             // Update UI
