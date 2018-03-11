@@ -71,6 +71,8 @@ namespace Hack24.MainApp
 
             var width = image.PixelWidth;
             var height = image.PixelHeight;
+            var canvasWidth = EmotionAppContent.ActualWidth;
+            var canvasHeight = EmotionAppContent.ActualHeight;
             var scaleX = 0; // PART_Canvas.ActualWidth / image.PixelWidth;
             var scaleY = 0; // PART_Canvas.ActualHeight / image.PixelHeight;
             stream.Seek(0);
@@ -78,7 +80,7 @@ namespace Hack24.MainApp
             image = await decoder.GetSoftwareBitmapAsync(
                 BitmapPixelFormat.Bgra8,
                 BitmapAlphaMode.Premultiplied,
-                new BitmapTransform { ScaledHeight = (uint)((double)height * scaleY), ScaledWidth = (uint)((double)width * scaleX) },
+                new BitmapTransform { ScaledHeight = (uint)((double)canvasHeight), ScaledWidth = (uint)((double)canvasWidth) },
                 ExifOrientationMode.IgnoreExifOrientation,
                 ColorManagementMode.DoNotColorManage);
 
