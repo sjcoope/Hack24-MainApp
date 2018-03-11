@@ -73,14 +73,24 @@ namespace Hack24.MainApp
             var height = image.PixelHeight;
             var canvasWidth = EmotionAppContent.ActualWidth;
             var canvasHeight = EmotionAppContent.ActualHeight;
-            var scaleX = 0; // PART_Canvas.ActualWidth / image.PixelWidth;
-            var scaleY = 0; // PART_Canvas.ActualHeight / image.PixelHeight;
+            var scaleX = canvasWidth / image.PixelWidth;
+            var scaleY = canvasHeight / image.PixelHeight;
+
+            if ( scaleX > scaleY )
+            {
+                scaleX = scaleY ;
+            }
+            else
+            {
+                scaleY = scaleX ;
+            }
+
             stream.Seek(0);
 
             image = await decoder.GetSoftwareBitmapAsync(
                 BitmapPixelFormat.Bgra8,
                 BitmapAlphaMode.Premultiplied,
-                new BitmapTransform { ScaledHeight = (uint)((double)canvasHeight), ScaledWidth = (uint)((double)canvasWidth) },
+                new BitmapTransform { ScaledHeight = (uint)((double)height*scaleY), ScaledWidth = (uint)((double)width*scaleX) },
                 ExifOrientationMode.IgnoreExifOrientation,
                 ColorManagementMode.DoNotColorManage);
 
@@ -100,7 +110,7 @@ namespace Hack24.MainApp
                 faceAttributes = faces[0].FaceAttributes;
                 faceRectangle = faces[0].FaceRectangle;
 
-                ProcessFaces(faces);
+                HighlightFaces(faces, scaleX, scaleY );
             }
         }
 
@@ -118,12 +128,12 @@ namespace Hack24.MainApp
             //                 $"Surprise {face.FaceAttributes.Emotion.Surprise}\nNeutral {face.FaceAttributes.Emotion.Neutral}\n\n";
         }
 
-        private void HighlightFaces(Face[] faces)
+        private void HighlightFaces(Face[] faces, double scaleX, double scaleY)
         {
-            var left = faces[0].FaceRectangle.Left;
-            var top = faces[0].FaceRectangle.Top;
-            var width = faces[0].FaceRectangle.Width;
-            var height = faces[0].FaceRectangle.Height;
+            var left = faces[0].FaceRectangle.Left*scaleX;
+            var top = faces[0].FaceRectangle.Top*scaleY;
+            var width = faces[0].FaceRectangle.Width*scaleX;
+            var height = faces[0].FaceRectangle.Height*scaleY;
             var rectangle1 = new Rectangle();
             rectangle1.Width = width;
             rectangle1.Height = height;
@@ -143,7 +153,7 @@ namespace Hack24.MainApp
         private void ProcessFaces(Face[] faces)
         {
             //OutputFaceInfo(faces);
-            HighlightFaces(faces);
+            //HighlightFaces(faces);
         }
 
         private async Task<Face[]> UploadAndDetectFaces(Stream imageStream)
