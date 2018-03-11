@@ -302,7 +302,7 @@ namespace Hack24.MainApp
             EmotionAppContent.Visibility = Visibility.Collapsed;
         }
 
-        private void ConversationApp_Click(object sender, RoutedEventArgs e)
+        private async void ConversationApp_Click(object sender, RoutedEventArgs e)
         {
             // Update UI
             MainViewControls.Visibility = Visibility.Collapsed;
