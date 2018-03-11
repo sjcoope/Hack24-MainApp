@@ -22,6 +22,10 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml.Media.Imaging;
 using Microsoft.ProjectOxford.Face.Contract;
 using Windows.UI.Xaml.Shapes;
+using Hack24.MainApp.Models;
+using Hack24.MainApp.Utils;
+using Newtonsoft.Json;
+using UWPSpeechToText;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -37,12 +41,24 @@ namespace Hack24.MainApp
         private int score = 0;
         private readonly IFaceServiceClient faceServiceClient;
 
+        private CortanaTalk Cortana;
+        private STT SpeechToText = new STT();
+        private int ConversationProgress;
+
+        private ConversationDetails ConversationDetails;
+
         public MainPage()
         {
+            this.InitializeComponent();
+            ConversationDetails =
+                JsonConvert.DeserializeObject<ConversationDetails>(File.ReadAllText("./Assets/Conversation.json"));
+            ConversationProgress = 0;
+
             var faceServiceAPIKey = File.ReadAllText("./Assets/FaceServiceAPI.key");
             faceServiceClient = new FaceServiceClient(faceServiceAPIKey, "https://westeurope.api.cognitive.microsoft.com/face/v1.0");
-            this.InitializeComponent();
             ShowPreview();
+
+            Cortana = new CortanaTalk();
         }
 
         private async void ShowPreview()
@@ -284,13 +300,22 @@ namespace Hack24.MainApp
             btnCapture.Visibility = Visibility.Visible;
         }
 
-        private void EmotionApp_Click(object sender, RoutedEventArgs e)
+        private async void EmotionApp_Click(object sender, RoutedEventArgs e)
         {
-            // Update UI
-            MainViewControls.Visibility = Visibility.Collapsed;
-            MainViewContent.Visibility = Visibility.Collapsed;
-            EmotionAppControls.Visibility = Visibility.Visible;
-            EmotionAppContent.Visibility = Visibility.Visible;
+
+            Task<bool> talkTask = Cortana.Talk("Emotions, let's play");
+
+            var success = await talkTask;
+
+            await Task.Run(async () => { await Task.Delay(TimeSpan.FromSeconds(3)); });
+            if (success)
+            {
+                // Update UI
+                MainViewControls.Visibility = Visibility.Collapsed;
+                MainViewContent.Visibility = Visibility.Collapsed;
+                EmotionAppControls.Visibility = Visibility.Visible;
+                EmotionAppContent.Visibility = Visibility.Visible;
+            }
         }
 
         private void EmotionExit_Click(object sender, RoutedEventArgs e)
@@ -302,35 +327,89 @@ namespace Hack24.MainApp
             EmotionAppContent.Visibility = Visibility.Collapsed;
         }
 
-        private async void ConversationApp_Click(object sender, RoutedEventArgs e)
+        private void ConversationApp_Click(object sender, RoutedEventArgs e)
         {
-            // Update UI
-            MainViewControls.Visibility = Visibility.Collapsed;
-            MainViewContent.Visibility = Visibility.Collapsed;
-            ConversationAppControls.Visibility = Visibility.Visible;
-            ConversationAppContent.Visibility = Visibility.Visible;
+            Task<bool> talkTask = Cortana.Talk("Conversation, let's play");
+
+            var success = await talkTask;
+
+            await Task.Run(async () => { await Task.Delay(TimeSpan.FromSeconds(3)); });
+            if (success)
+            {
+                // Update UI
+                MainViewControls.Visibility = Visibility.Collapsed;
+                MainViewContent.Visibility = Visibility.Collapsed;
+                ConversationAppControls.Visibility = Visibility.Visible;
+                ConversationAppContent.Visibility = Visibility.Visible;
+                UpdateResponses();
+            }
         }
 
         #region Conversation App 
 
-        private void ConversationAppButton1_Click(object sender, RoutedEventArgs e)
+        private async void UpdateResponses()
         {
+            var statement = ConversationDetails.Conversations[0].Statements[ConversationProgress];
+            var speechText = statement.SpeechText;
 
+            ConversationAppButton_0.Content = statement.Responses[0].Text;
+            ConversationAppButton_1.Content = statement.Responses[1].Text;
+            ConversationAppButton_2.Content = statement.Responses[2].Text;
+            ConversationAppButton_3.Content = statement.Responses[3].Text;
+
+            switch (ConversationProgress)
+            {
+                case 0:
+                    ConversationLine_0.Text = speechText;
+                    break;
+                case 1:
+                    ConversationLine_2.Text = speechText;
+                    break;
+                case 2:
+                    ConversationLine_4.Text = speechText;
+                    break;
+                case 3:
+                    ConversationLine_6.Text = speechText;
+                    break;
+            }
+
+            Task<bool> talkTask = Cortana.Talk(speechText);
+
+            var success = await talkTask;
         }
 
-        private void ConversationAppButton2_Click(object sender, RoutedEventArgs e)
+        private void ConversationAppButton_Click(object sender, RoutedEventArgs e)
         {
+            var button = (Button)sender;
+            var responseId = int.Parse(button.Name.Split('_')[1]);
 
-        }
+            switch (ConversationProgress)
+            {
+                case 0:
+                    ConversationLine_1.Text = button.Content.ToString();
+                    break;
+                case 1:
+                    ConversationLine_3.Text = button.Content.ToString();
+                    break;
+                case 2:
+                    ConversationLine_5.Text = button.Content.ToString();
+                    break;
+                case 3:
+                    ConversationLine_7.Text = button.Content.ToString();
+                    break;
+            }
 
-        private void ConversationAppButton3_Click(object sender, RoutedEventArgs e)
-        {
+            var statement = ConversationDetails.Conversations[0].Statements[ConversationProgress];
+            if (statement.Responses[responseId].Correct)
+            {
+                updateScore(1);
+            }
 
-        }
-
-        private void ConversationAppButton4_Click(object sender, RoutedEventArgs e)
-        {
-
+            ConversationProgress++;
+            if (ConversationProgress < ConversationDetails.Conversations[0].Statements.Count)
+            {
+                UpdateResponses();
+            }
         }
 
         #endregion

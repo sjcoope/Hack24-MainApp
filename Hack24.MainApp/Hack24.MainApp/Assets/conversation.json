@@ -1,0 +1,92 @@
+﻿{
+  "Conversations": [
+    {
+      "Name": "Questions",
+      "Statements": [
+        {
+          "SpeechText": "Hello",
+          "Responses": [
+            {
+              "Text": "Hello",
+              "Correct": true
+            },
+            {
+              "Text": "I am happy",
+              "Correct": false
+            },
+            {
+              "Text": "Goodbye",
+              "Correct":  false
+            },
+            {
+              "Text": "When can I leave?",
+              "Correct": false
+            }
+          ]
+        },
+        {
+          "SpeechText": "How are you today?",
+          "Responses": [
+            {
+              "Text": "I am doing well",
+              "Correct": true
+            },
+            {
+              "Text": "No",
+              "Correct": false
+            },
+            {
+              "Text": "I like pizza",
+              "Correct": false
+            },
+            {
+              "Text": "I have been shopping",
+              "Correct": false
+            }
+          ]
+        },
+        {
+          "SpeechText": "Would you like a glass of water?",
+          "Responses": [
+            {
+              "Text": "Yes please",
+              "Correct": true
+            },
+            {
+              "Text": "No thank you",
+              "Correct": true
+            },
+            {
+              "Text": "I am hungry",
+              "Correct": false
+            },
+            {
+              "Text": "Yes it was nice" 
+            }
+          ] 
+        },
+        {
+          "SpeechText": "How was your weekend?",
+          "Responses": [
+            {
+              "Text": "No",
+              "Correct": false
+            },
+            {
+              "Text": "It was nice",
+              "Correct": true
+            },
+            {
+              "Text": "I don't know",
+              "Correct": false
+            },
+            {
+              "Text": "I am thirsty",
+              "Correct": false 
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
