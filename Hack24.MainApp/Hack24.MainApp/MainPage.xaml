@@ -36,13 +36,13 @@
         </Grid>
 
         <!-- Main View Controls -->
-        <StackPanel x:Name="MainViewControls" Grid.Column="1" Grid.Row="1">
+        <StackPanel x:Name="MainViewControls" Grid.Column="1" Grid.Row="1" Visibility="Visible">
             <Button Content="Play EmotivePlay" Click="EmotionApp_Click" Width="150" Height="50" Margin="25 50 25 0" />
             <Button Content="Play TalkyWayz" Click="ConversationApp_Click" Width="150" Height="50" Margin="25 50 25 0" />
         </StackPanel>
         
         <!-- Main View Content -->
-        <StackPanel x:Name="MainViewContent" Visibility="Collapsed" Grid.Column="0" Grid.RowSpan="2" Background="Yellow">
+        <StackPanel x:Name="MainViewContent" Visibility="Visible" Grid.Column="0" Grid.RowSpan="2">
         </StackPanel>
         
         <!-- Emotion App -->
@@ -60,7 +60,7 @@
             </Canvas>
         </StackPanel>
 
-        <StackPanel x:Name="EmotionAppContent" Visibility="Collapsed" Grid.Column="0" Grid.RowSpan="2" Background="Yellow">
+        <StackPanel x:Name="EmotionAppContent" Grid.Column="0" Grid.RowSpan="2" Visibility="Collapsed">
             <CaptureElement x:Name="PART_Capture" Margin="0,0,0,0"/>
             <Canvas x:Name="PART_Canvas" Visibility="Collapsed" Margin="0,0,0,0">
                 <Image HorizontalAlignment="Left" Margin="0,0,0,0" x:Name="PART_Analysis"/>
@@ -68,10 +68,37 @@
         </StackPanel>
 
         <!-- Conversation App -->
-        <StackPanel x:Name="ConversationAppControls" Grid.Column="1" Grid.Row="1" Background="Blue" Visibility="Collapsed">
+        <StackPanel x:Name="ConversationAppControls" Grid.Column="1" Grid.Row="1" Visibility="Collapsed">
+            <Button x:Name="ConversationAppButton1" FontSize="10" Content="TODO1" Click="ConversationAppButton1_Click" Width="190" Height="85" Margin="5" />
+            <Button x:Name="ConversationAppButton2" FontSize="10" Content="TODO2" Click="ConversationAppButton2_Click" Width="190" Height="85" Margin="5" />
+            <Button x:Name="ConversationAppButton3" FontSize="10" Content="TODO3" Click="ConversationAppButton3_Click" Width="190" Height="85" Margin="5" />
+            <Button x:Name="ConversationAppButton4" FontSize="10" Content="TODO4" Click="ConversationAppButton4_Click" Width="190" Height="85" Margin="5" />
         </StackPanel>
 
-        <StackPanel x:Name="ConversationAppContent" Visibility="Collapsed" Grid.Column="0" Grid.RowSpan="2" Background="Blue">
-        </StackPanel>
+        <Grid x:Name="ConversationAppContent" Grid.Column="0" Grid.RowSpan="2" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Row 1" Padding="10" />
+            <TextBlock Grid.Row="1" Text="Row 2" Padding="10" />
+            <TextBlock Grid.Row="2" Text="Row 3" Padding="10" />
+            <TextBlock Grid.Row="3" Text="Row 4" Padding="10" />
+            <TextBlock Grid.Row="4" Text="Row 5" Padding="10" />
+            <TextBlock Grid.Row="5" Text="Row 6" Padding="10" />
+            <TextBlock Grid.Row="6" Text="Row 7" Padding="10" />
+            <TextBlock Grid.Row="7" Text="Row 8" Padding="10" />
+
+        </Grid>
     </Grid>
 </Page>

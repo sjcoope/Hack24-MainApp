@@ -296,5 +296,29 @@ namespace Hack24.MainApp
             ConversationAppControls.Visibility = Visibility.Visible;
             ConversationAppContent.Visibility = Visibility.Visible;
         }
+
+        #region Conversation App 
+
+        private void ConversationAppButton1_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ConversationAppButton2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ConversationAppButton3_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ConversationAppButton4_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
     }
 }
