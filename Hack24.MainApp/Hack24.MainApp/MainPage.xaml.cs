@@ -293,6 +293,15 @@ namespace Hack24.MainApp
             EmotionAppContent.Visibility = Visibility.Visible;
         }
 
+        private void EmotionExit_Click(object sender, RoutedEventArgs e)
+        {
+            // Update UI
+            MainViewControls.Visibility = Visibility.Visible;
+            MainViewContent.Visibility = Visibility.Visible;
+            EmotionAppControls.Visibility = Visibility.Collapsed;
+            EmotionAppContent.Visibility = Visibility.Collapsed;
+        }
+
         private void ConversationApp_Click(object sender, RoutedEventArgs e)
         {
             // Update UI
