@@ -189,6 +189,7 @@ namespace Hack24.MainApp
             txtScore.Text = score.ToString();
             PART_Choice.Visibility = Visibility.Collapsed;
             PART_Canvas.Visibility = Visibility.Collapsed;
+            PART_Capture.Visibility = Visibility.Visible;
         }
 
         private void Click_Sad(object sender, RoutedEventArgs e)
@@ -205,6 +206,7 @@ namespace Hack24.MainApp
             txtScore.Text = score.ToString();
             PART_Choice.Visibility = Visibility.Collapsed;
             PART_Canvas.Visibility = Visibility.Collapsed;
+            PART_Capture.Visibility = Visibility.Visible;
         }
 
         private void Click_Angry(object sender, RoutedEventArgs e)
@@ -221,6 +223,7 @@ namespace Hack24.MainApp
             txtScore.Text = score.ToString();
             PART_Choice.Visibility = Visibility.Collapsed;
             PART_Canvas.Visibility = Visibility.Collapsed;
+            PART_Capture.Visibility = Visibility.Visible;
         }
 
         private void Click_Fear(object sender, RoutedEventArgs e)
@@ -237,6 +240,7 @@ namespace Hack24.MainApp
             txtScore.Text = score.ToString();
             PART_Choice.Visibility = Visibility.Collapsed;
             PART_Canvas.Visibility = Visibility.Collapsed;
+            PART_Capture.Visibility = Visibility.Visible;
         }
 
         private void Click_Surprised(object sender, RoutedEventArgs e)
@@ -253,6 +257,7 @@ namespace Hack24.MainApp
             txtScore.Text = score.ToString();
             PART_Choice.Visibility = Visibility.Collapsed;
             PART_Canvas.Visibility = Visibility.Collapsed;
+            PART_Capture.Visibility = Visibility.Visible;
         }
 
         private void Click_Neutral(object sender, RoutedEventArgs e)
@@ -269,6 +274,7 @@ namespace Hack24.MainApp
             txtScore.Text = score.ToString();
             PART_Choice.Visibility = Visibility.Collapsed;
             PART_Canvas.Visibility = Visibility.Collapsed;
+            PART_Capture.Visibility = Visibility.Visible;
         }
 
         private void EmotionApp_Click(object sender, RoutedEventArgs e)
