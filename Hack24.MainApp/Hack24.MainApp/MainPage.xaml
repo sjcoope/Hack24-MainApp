@@ -8,6 +8,55 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
 
+        <!-- Header and Score Panel -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+            
+            <Border Background="DarkSlateGray" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="Black" BorderThickness="2 2 2 2">
+                <TextBlock Text="APP NAME" Foreground="White" Style="{StaticResource SubtitleTextBlockStyle}" FontWeight="Bold" HorizontalAlignment="Center" Margin="10"></TextBlock>
+            </Border>
+            <TextBlock Grid.Column="0" Grid.Row="1" Text="SCORE" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center" ></TextBlock>
+            <TextBlock x:Name="txtScore" Grid.Column="1" Grid.Row="1" Text="0" FontSize="30" HorizontalAlignment="Center" Margin="0 0 0 10"  />
+        </Grid>
+
+        <!-- Main View Controls -->
+        <StackPanel x:Name="MainViewControls" Grid.Column="1" Grid.Row="1">
+            <Button Content="Play EmotivePlay" Click="EmotionApp_Click" Width="150" Height="50" Margin="25 50 25 0" />
+            <Button Content="Play TalkyWayz" Click="ConversationApp_Click" Width="150" Height="50" Margin="25 50 25 0" />
+        </StackPanel>
+        
+        <!-- Main View Content -->
+        <StackPanel x:Name="MainViewContent" Visibility="Collapsed" Grid.Column="0" Grid.RowSpan="2" Background="Yellow">
+        </StackPanel>
+        
+        <!-- Emotion App -->
+        <StackPanel x:Name="EmotionAppControls" Grid.Column="1" Grid.Row="1" Background="Yellow" Visibility="Collapsed">
+        </StackPanel>
+
+        <StackPanel x:Name="EmotionAppContent" Visibility="Collapsed" Grid.Column="0" Grid.RowSpan="2" Background="Yellow">
+        </StackPanel>
+
+        <!-- Conversation App -->
+        <StackPanel x:Name="ConversationAppControls" Grid.Column="1" Grid.Row="1" Background="Blue" Visibility="Collapsed">
+        </StackPanel>
+
+        <StackPanel x:Name="ConversationAppContent" Visibility="Collapsed" Grid.Column="0" Grid.RowSpan="2" Background="Blue">
+        </StackPanel>
     </Grid>
 </Page>
