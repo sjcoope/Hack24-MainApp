@@ -324,13 +324,30 @@ namespace Hack24.MainApp
         private async void UpdateResponses()
         {
             var statement = ConversationDetails.Conversations[0].Statements[ConversationProgress];
+            var speechText = statement.SpeechText;
 
-            ConversationAppButton_1.Content = statement.Responses[0].Text;
-            ConversationAppButton_2.Content = statement.Responses[1].Text;
-            ConversationAppButton_3.Content = statement.Responses[2].Text;
-            ConversationAppButton_4.Content = statement.Responses[3].Text;
+            ConversationAppButton_0.Content = statement.Responses[0].Text;
+            ConversationAppButton_1.Content = statement.Responses[1].Text;
+            ConversationAppButton_2.Content = statement.Responses[2].Text;
+            ConversationAppButton_3.Content = statement.Responses[3].Text;
 
-            Task<bool> talkTask = Cortana.Talk(statement.SpeechText);
+            switch (ConversationProgress)
+            {
+                case 0:
+                    ConversationLine_0.Text = speechText;
+                    break;
+                case 1:
+                    ConversationLine_2.Text = speechText;
+                    break;
+                case 2:
+                    ConversationLine_4.Text = speechText;
+                    break;
+                case 3:
+                    ConversationLine_6.Text = speechText;
+                    break;
+            }
+
+            Task<bool> talkTask = Cortana.Talk(speechText);
 
             var success = await talkTask;
         }
@@ -340,13 +357,27 @@ namespace Hack24.MainApp
             var button = (Button)sender;
             var responseId = int.Parse(button.Name.Split('_')[1]);
 
+            switch (ConversationProgress)
+            {
+                case 0:
+                    ConversationLine_1.Text = button.Content.ToString();
+                    break;
+                case 1:
+                    ConversationLine_3.Text = button.Content.ToString();
+                    break;
+                case 2:
+                    ConversationLine_5.Text = button.Content.ToString();
+                    break;
+                case 3:
+                    ConversationLine_7.Text = button.Content.ToString();
+                    break;
+            }
+
             var statement = ConversationDetails.Conversations[0].Statements[ConversationProgress];
             if (statement.Responses[responseId].Correct)
             {
-                //Score++;
+                updateScore(1);
             }
-
-            //ScoreText.Text = $"Score: {Score}";
 
             ConversationProgress++;
             if (ConversationProgress < ConversationDetails.Conversations[0].Statements.Count)

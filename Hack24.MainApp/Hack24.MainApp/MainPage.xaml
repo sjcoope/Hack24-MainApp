@@ -77,10 +77,10 @@
 
         <!-- Conversation App -->
         <StackPanel x:Name="ConversationAppControls" Grid.Column="1" Grid.Row="1" Visibility="Collapsed">
+            <Button x:Name="ConversationAppButton_0" FontSize="20" Click="ConversationAppButton_Click" Width="190" Height="85" Margin="5" />
             <Button x:Name="ConversationAppButton_1" FontSize="20" Click="ConversationAppButton_Click" Width="190" Height="85" Margin="5" />
             <Button x:Name="ConversationAppButton_2" FontSize="20" Click="ConversationAppButton_Click" Width="190" Height="85" Margin="5" />
             <Button x:Name="ConversationAppButton_3" FontSize="20" Click="ConversationAppButton_Click" Width="190" Height="85" Margin="5" />
-            <Button x:Name="ConversationAppButton_4" FontSize="20" Click="ConversationAppButton_Click" Width="190" Height="85" Margin="5" />
         </StackPanel>
 
         <Grid x:Name="ConversationAppContent" Grid.Column="0" Grid.RowSpan="2" Visibility="Collapsed">
@@ -98,14 +98,14 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Row 1" Padding="10" />
-            <TextBlock Grid.Row="1" Text="Row 2" Padding="10" />
-            <TextBlock Grid.Row="2" Text="Row 3" Padding="10" />
-            <TextBlock Grid.Row="3" Text="Row 4" Padding="10" />
-            <TextBlock Grid.Row="4" Text="Row 5" Padding="10" />
-            <TextBlock Grid.Row="5" Text="Row 6" Padding="10" />
-            <TextBlock Grid.Row="6" Text="Row 7" Padding="10" />
-            <TextBlock Grid.Row="7" Text="Row 8" Padding="10" />
+            <TextBlock Name="ConversationLine_0" Grid.Row="0" Padding="10" />
+            <TextBlock Name="ConversationLine_1" Grid.Row="1" Padding="10" />
+            <TextBlock Name="ConversationLine_2" Grid.Row="2" Padding="10" />
+            <TextBlock Name="ConversationLine_3" Grid.Row="3" Padding="10" />
+            <TextBlock Name="ConversationLine_4" Grid.Row="4" Padding="10" />
+            <TextBlock Name="ConversationLine_5" Grid.Row="5" Padding="10" />
+            <TextBlock Name="ConversationLine_6" Grid.Row="6" Padding="10" />
+            <TextBlock Name="ConversationLine_7" Grid.Row="7" Padding="10" />
 
         </Grid>
     </Grid>
