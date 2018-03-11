@@ -92,6 +92,7 @@ namespace Hack24.MainApp
             if (faces.Length > 0)
             {
                 PART_Canvas.Visibility = Visibility.Visible;
+                PART_Choice.Visibility = Visibility.Visible;
                 PART_Capture.Visibility = Visibility.Collapsed;
                 ProcessFaces(faces);
             }
