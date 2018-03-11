@@ -69,10 +69,10 @@
 
         <!-- Conversation App -->
         <StackPanel x:Name="ConversationAppControls" Grid.Column="1" Grid.Row="1" Visibility="Collapsed">
-            <Button x:Name="ConversationAppButton1" FontSize="10" Content="TODO1" Click="ConversationAppButton1_Click" Width="190" Height="85" Margin="5" />
-            <Button x:Name="ConversationAppButton2" FontSize="10" Content="TODO2" Click="ConversationAppButton2_Click" Width="190" Height="85" Margin="5" />
-            <Button x:Name="ConversationAppButton3" FontSize="10" Content="TODO3" Click="ConversationAppButton3_Click" Width="190" Height="85" Margin="5" />
-            <Button x:Name="ConversationAppButton4" FontSize="10" Content="TODO4" Click="ConversationAppButton4_Click" Width="190" Height="85" Margin="5" />
+            <Button x:Name="ConversationAppButton_1" FontSize="20" Click="ConversationAppButton_Click" Width="190" Height="85" Margin="5" />
+            <Button x:Name="ConversationAppButton_2" FontSize="20" Click="ConversationAppButton_Click" Width="190" Height="85" Margin="5" />
+            <Button x:Name="ConversationAppButton_3" FontSize="20" Click="ConversationAppButton_Click" Width="190" Height="85" Margin="5" />
+            <Button x:Name="ConversationAppButton_4" FontSize="20" Click="ConversationAppButton_Click" Width="190" Height="85" Margin="5" />
         </StackPanel>
 
         <Grid x:Name="ConversationAppContent" Grid.Column="0" Grid.RowSpan="2" Visibility="Collapsed">
